@@ -1,0 +1,32 @@
+CHANGELOG
+=========
+
+1.1.1
+-----
+
+  - [TASK] Build app container with php 7.1 support
+
+1.1.0
+-----
+
+  - [FEATURE] Build app container with php 7.0 support
+
+1.0.1
+-----
+
+  - [TASK] Support Wordpress CLI
+
+1.0.0
+-----
+
+  - [FEATURE] Support for mac docker with volume ownership
+
+0.0.2
+-----
+
+  - [IMP] Fatal error: "Security" how to run mysqld as root!
+
+0.0.1
+-----
+
+  - [TASK]    Initial commit

@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  db:
+    container_name: wpdocker_db
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: "wpdocker"
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: "wpuser"
+      MYSQL_PASSWORD: "wppassword"
+    volumes:
+      - db_vol:/var/lib/mysql
+  
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    container_name: wpdocker_wordpress
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppassword
+      WORDPRESS_DB_NAME: wpdocker
+    volumes: ["./:/var/www/html"]
+
+volumes:
+  db_vol: {}

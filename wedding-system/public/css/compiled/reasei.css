@@ -1,0 +1,94 @@
+/* line 1, ../../../resources/assets/sass/components/_general.scss */
+.login-page,
+.register-page {
+  background: url("../images/background.jpg") !important;
+  background-size: cover !important;
+}
+
+/* line 9, ../../../resources/assets/sass/components/_general.scss */
+form .required:after {
+  content: '*';
+}
+
+/* line 15, ../../../resources/assets/sass/components/_general.scss */
+textarea {
+  resize: vertical;
+  width: 100%;
+}
+
+/* line 20, ../../../resources/assets/sass/components/_general.scss */
+.image-preview,
+.new-image-preview {
+  height: auto;
+  width: 300px;
+}
+
+/* line 26, ../../../resources/assets/sass/components/_general.scss */
+.login-box {
+  margin: 15% auto;
+  width: 500px;
+}
+
+/* line 1, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings {
+  padding: 15px;
+  width: 100%;
+}
+/* line 5, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item {
+  padding: 15px;
+}
+/* line 8, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item .date {
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
+}
+/* line 15, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item .heart {
+  color: red;
+  margin-top: 50%;
+  padding: 15px 0;
+  text-align: center;
+  width: 100%;
+}
+/* line 22, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item .heart i {
+  font-size: 120px;
+}
+/* line 26, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item .heart span {
+  font-size: 25px;
+  font-weight: bold;
+}
+/* line 32, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item .preview {
+  text-align: center;
+}
+/* line 35, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item .preview .image {
+  width: 100%;
+}
+/* line 38, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item .preview .image img {
+  height: auto;
+  width: 300px;
+}
+/* line 44, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item .preview .name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+/* line 51, ../../../resources/assets/sass/components/_wedding.scss */
+.weddings .item .description {
+  margin-top: 30px;
+}
+
+/* line 58, ../../../resources/assets/sass/components/_wedding.scss */
+.recording-gift .recorded-gift-container {
+  height: 200px;
+  max-height: 200px;
+  overflow-y: scroll;
+}

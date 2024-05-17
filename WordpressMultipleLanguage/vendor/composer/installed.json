@@ -1,0 +1,37 @@
+[
+    {
+        "name": "visay/dockerwordpress",
+        "version": "1.1.1",
+        "version_normalized": "1.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/visay/DockerWordpress.git",
+            "reference": "507c8cdd10dbe97cc8f7e62db9bcfeaa8378b2c9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/visay/DockerWordpress/zipball/507c8cdd10dbe97cc8f7e62db9bcfeaa8378b2c9",
+            "reference": "507c8cdd10dbe97cc8f7e62db9bcfeaa8378b2c9",
+            "shasum": ""
+        },
+        "time": "2018-06-12T10:13:12+00:00",
+        "bin": [
+            "bin/dockerwordpress"
+        ],
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Visay Keo",
+                "email": "keo@visay.info",
+                "homepage": "http://www.visay.info",
+                "role": "Developer"
+            }
+        ],
+        "description": "Docker Compose structure to quickly startup Wordpress projects"
+    }
+]

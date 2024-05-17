@@ -1,0 +1,29 @@
+.login-page,
+.register-page {
+  background: url('../images/background.jpg') !important;
+  background-size: cover !important;
+}
+
+form {
+  .required {
+    &:after {
+      content: '*';
+    }
+  }
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+}
+
+.image-preview,
+.new-image-preview {
+  height: auto;
+  width: 300px;
+}
+
+.login-box {
+  margin: 15% auto;
+  width: 500px;
+}

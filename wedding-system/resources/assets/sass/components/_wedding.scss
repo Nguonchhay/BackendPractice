@@ -1,0 +1,63 @@
+.weddings {
+  padding: 15px;
+  width: 100%;
+
+  .item {
+    padding: 15px;
+
+    .date {
+      font-size: 24px;
+      margin-bottom: 30px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .heart {
+      color: red;
+      margin-top: 50%;
+      padding: 15px 0;
+      text-align: center;
+      width: 100%;
+
+      i {
+        font-size: 120px;
+      }
+
+      span {
+        font-size: 25px;
+        font-weight: bold;
+      }
+    }
+
+    .preview {
+      text-align: center;
+
+      .image {
+        width: 100%;
+
+        img {
+          height: auto;
+          width: 300px;
+        }
+      }
+
+      .name {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+    }
+
+    .description {
+      margin-top: 30px;
+    }
+  }
+}
+
+.recording-gift {
+  .recorded-gift-container {
+    height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+}

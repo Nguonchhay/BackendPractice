@@ -1,0 +1,3 @@
+Sitemap: http://local.wordpress49.host/sitemap_en.xml
+Sitemap: http://local.wordpress49.host/sitemap_km.xml
+Sitemap: http://local.wordpress49.host/sitemap_de.xml

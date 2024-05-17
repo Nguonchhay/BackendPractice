@@ -1,0 +1,5 @@
+{
+    "require": {
+        "visay/dockerwordpress": "^1.1"
+    }
+}
