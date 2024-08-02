@@ -26,10 +26,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for("homePage")}}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for("aboutPage")}}">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for("contactPage")}}">Contact</a></li>
+                        {% if not session["user"] %}
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/login">Login</a></li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" href="#">
+                                    Logged in as {{ session["user"]["name"] }}
+                                </a>
+                                <form method="POST" action="{{ url_for("logout")}}">
+                                    <button type="submit">Logout</button>
+                                </form>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
