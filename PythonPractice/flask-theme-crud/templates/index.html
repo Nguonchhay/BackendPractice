@@ -4,6 +4,16 @@
 
 {% block content %}
     <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="post-preview">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="alert">{{ msg }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
         <!-- Post preview-->
         <div class="post-preview">
             <a href="post.html">

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, session, redirect
+from flask import Flask, render_template, request, url_for, session, redirect, flash
 from datetime import timedelta
 
 
@@ -33,7 +33,7 @@ def login():
             "email": email,
             "name": "Fake User"
         }
-        print(session["user"])
+        flash("Login success", category="info")
         return redirect(url_for("homePage"))
     else:
         if "user" in session and "email" in session["user"]:
