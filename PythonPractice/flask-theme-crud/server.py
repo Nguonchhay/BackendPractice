@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request, url_for, session, redirect, flash, jsonify
 from datetime import timedelta
 
+from api.categories import category_bp
+
 
 app = Flask(__name__)
 app.secret_key = "12345678"
 app.permanent_session_lifetime = timedelta(days = 1)
+
+app.register_blueprint(category_bp, url_prefix = "/api")
 
 
 @app.route("/")
