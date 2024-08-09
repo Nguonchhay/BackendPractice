@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, session, redirect, flash
+from flask import Flask, render_template, request, url_for, session, redirect, flash, jsonify
 from datetime import timedelta
 
 
@@ -45,6 +45,21 @@ def login():
 def logout():
     session.pop("user", None)
     return redirect(url_for("homePage"))
+
+
+@app.route("/api/categories")
+def getCategories():
+    data = [
+        {
+            "id": 1,
+            "title": "Item 1"
+        },
+        {
+            "id": 2,
+            "title": "Item 2"
+        }
+    ];
+    return jsonify(data);
 
 
 if __name__ == "__main__":
