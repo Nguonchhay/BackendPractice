@@ -1,46 +1,61 @@
 package com.nguonchhay.demo.products;
 
+import com.nguonchhay.demo.products.CommandHandlers.CreateProductCommandHandler;
+import com.nguonchhay.demo.products.CommandHandlers.DeleteProductCommandHandler;
+import com.nguonchhay.demo.products.CommandHandlers.UpdateProductCommandHandler;
 import com.nguonchhay.demo.products.Models.Product;
+import com.nguonchhay.demo.products.Models.UpdateProductCommand;
+import com.nguonchhay.demo.products.QueryHandlers.GetAllProductsQueryHandler;
+import com.nguonchhay.demo.products.QueryHandlers.GetProductQueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private GetAllProductsQueryHandler getAllProductsQueryHandler;
+
+    @Autowired
+    private GetProductQueryHandler getProductQueryHandler;
+
+    @Autowired
+    private CreateProductCommandHandler createProductCommandHandler;
+
+    @Autowired
+    private UpdateProductCommandHandler updateProductCommandHandler;
+
+    @Autowired
+    private DeleteProductCommandHandler deleteProductCommandHandler;
+
 
     @GetMapping
     public ResponseEntity<List<Product>> getProducts() {
-        return ResponseEntity.ok(productRepository.findAll());
+        return getAllProductsQueryHandler.execute(null);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Product>> getProduct(@PathVariable Integer id) {
-        return ResponseEntity.ok(productRepository.findById(id));
+    public ResponseEntity<Product> getProduct(@PathVariable Integer id) {
+        return getProductQueryHandler.execute(id);
     }
 
     @PostMapping
     public ResponseEntity createProduct(@RequestBody Product product) {
-        productRepository.save(product);
-        return ResponseEntity.ok().build();
+       return createProductCommandHandler.execute(product);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity updateProduct(@PathVariable Integer id, @RequestBody Product product) {
-        product.setId(id);
-        productRepository.save(product);
-        return ResponseEntity.ok().build();
+        UpdateProductCommand command = new UpdateProductCommand(id, product);
+        return updateProductCommandHandler.execute(command);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteProduct(@PathVariable Integer id) {
-        productRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        return deleteProductCommandHandler.execute(id);
     }
 }
