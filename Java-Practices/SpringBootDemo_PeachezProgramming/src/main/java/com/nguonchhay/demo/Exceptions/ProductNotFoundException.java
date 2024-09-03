@@ -1,4 +1,9 @@
 package com.nguonchhay.demo.Exceptions;
 
-public class ProductNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class ProductNotFoundException extends BaseException {
+    public ProductNotFoundException() {
+        super(HttpStatus.NOT_FOUND, new SimpleResponse("Product not found"));
+    }
 }
