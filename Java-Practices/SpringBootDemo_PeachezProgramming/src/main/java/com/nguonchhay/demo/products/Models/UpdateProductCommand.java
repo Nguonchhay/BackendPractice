@@ -9,6 +9,10 @@ public class UpdateProductCommand {
         this.product = product;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public Product getUpdatedProduct() {
         product.setId(id);
         return product;

@@ -1,5 +1,6 @@
 package com.nguonchhay.demo.products.QueryHandlers;
 
+import com.nguonchhay.demo.Exceptions.ProductNotFoundException;
 import com.nguonchhay.demo.Query;
 import com.nguonchhay.demo.products.Models.Product;
 import com.nguonchhay.demo.products.ProductDTO;
@@ -21,7 +22,7 @@ public class GetProductQueryHandler implements Query<Integer, ProductDTO> {
     public ResponseEntity<ProductDTO> execute(Integer id) {
         Optional<Product> product = productRepository.findById(id);
         if (product.isEmpty()) {
-            throw new RuntimeException("Product not found!");
+            throw new ProductNotFoundException();
         }
         return ResponseEntity.ok(new ProductDTO(product.get()));
     }

@@ -1,5 +1,6 @@
 package com.nguonchhay.demo.products;
 
+import com.nguonchhay.demo.Exceptions.ProductNotFoundException;
 import com.nguonchhay.demo.products.CommandHandlers.CreateProductCommandHandler;
 import com.nguonchhay.demo.products.CommandHandlers.DeleteProductCommandHandler;
 import com.nguonchhay.demo.products.CommandHandlers.UpdateProductCommandHandler;
@@ -8,6 +9,7 @@ import com.nguonchhay.demo.products.Models.UpdateProductCommand;
 import com.nguonchhay.demo.products.QueryHandlers.GetAllProductsQueryHandler;
 import com.nguonchhay.demo.products.QueryHandlers.GetProductQueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,5 +59,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public ResponseEntity deleteProduct(@PathVariable Integer id) {
         return deleteProductCommandHandler.execute(id);
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<String> handleProductNotFoundException() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
     }
 }
