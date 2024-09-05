@@ -7,6 +7,7 @@ import com.nguonchhay.demo.products.Models.Product;
 import com.nguonchhay.demo.products.Models.UpdateProductCommand;
 import com.nguonchhay.demo.products.QueryHandlers.GetAllProductsQueryHandler;
 import com.nguonchhay.demo.products.QueryHandlers.GetProductQueryHandler;
+import com.nguonchhay.demo.products.QueryHandlers.GetProductsByPriceQueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,9 @@ public class ProductController {
 
     @Autowired
     private GetAllProductsQueryHandler getAllProductsQueryHandler;
+
+    @Autowired
+    private GetProductsByPriceQueryHandler getProductsByPriceQueryHandler;
 
     @Autowired
     private GetProductQueryHandler getProductQueryHandler;
@@ -36,6 +40,11 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getProducts() {
         return getAllProductsQueryHandler.execute(null);
+    }
+
+    @GetMapping("/search-price/{maxPrice}")
+    public ResponseEntity<List<Product>> getProductByPrice(@PathVariable Double maxPrice) {
+        return getProductsByPriceQueryHandler.execute(maxPrice);
     }
 
     @GetMapping("/{id}")
