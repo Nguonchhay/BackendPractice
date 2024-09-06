@@ -8,11 +8,14 @@ import com.nguonchhay.demo.products.Models.UpdateProductCommand;
 import com.nguonchhay.demo.products.QueryHandlers.GetAllProductsQueryHandler;
 import com.nguonchhay.demo.products.QueryHandlers.GetProductQueryHandler;
 import com.nguonchhay.demo.products.QueryHandlers.GetProductsByPriceQueryHandler;
+import com.nguonchhay.demo.products.QueryHandlers.GetProductsBySearchQueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/products")
@@ -26,6 +29,9 @@ public class ProductController {
 
     @Autowired
     private GetProductQueryHandler getProductQueryHandler;
+
+    @Autowired
+    private GetProductsBySearchQueryHandler getProductsBySearchQueryHandler;
 
     @Autowired
     private CreateProductCommandHandler createProductCommandHandler;
@@ -45,6 +51,14 @@ public class ProductController {
     @GetMapping("/search-price/{maxPrice}")
     public ResponseEntity<List<Product>> getProductByPrice(@PathVariable Double maxPrice) {
         return getProductsByPriceQueryHandler.execute(maxPrice);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> getProductsByQuery(@RequestParam("name") String name, @RequestParam(value = "description", required = false) String description) {
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put("name", name);
+        queryParams.put("description", description);
+        return getProductsBySearchQueryHandler.execute(queryParams);
     }
 
     @GetMapping("/{id}")

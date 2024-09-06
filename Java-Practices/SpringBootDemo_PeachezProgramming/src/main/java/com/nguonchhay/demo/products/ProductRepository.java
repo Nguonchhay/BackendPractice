@@ -7,10 +7,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    @Query(" SELECT p FROM Product p WHERE p.price < :maxPrice")
+    @Query("SELECT p FROM Product p WHERE p.price < :maxPrice")
     List<Product> findProductsWithPriceLessThan(@Param("maxPrice") double maxPrice);
+
+    @Query("SELECT p FROM Product p WHERE name LIKE %:name% OR description LIKE %:description%")
+    List<Product> queryProducts(@Param("name") String name, @Param("description") String description);
 }
