@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    @Query(" SELECT * FROM products WHERE price < :maxPrice")
+    @Query(" SELECT p FROM Product p WHERE p.price < :maxPrice")
     List<Product> findProductsWithPriceLessThan(@Param("maxPrice") double maxPrice);
 }
