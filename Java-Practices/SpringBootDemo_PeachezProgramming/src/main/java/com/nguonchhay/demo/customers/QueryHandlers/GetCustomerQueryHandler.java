@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class GetCustomerQueryHandler implements Query<Integer, Customer> {
 
@@ -15,6 +17,11 @@ public class GetCustomerQueryHandler implements Query<Integer, Customer> {
 
     @Override
     public ResponseEntity<Customer> execute(Integer id) {
-        return ResponseEntity.ok(customerRepository.findById(id).get());
+        Optional<Customer> customerOptional = customerRepository.findById(id);
+        if (customerOptional.isEmpty()) {
+            throw new RuntimeException("Customer not found");
+        }
+
+        return ResponseEntity.ok(customerOptional.get());
     }
 }
