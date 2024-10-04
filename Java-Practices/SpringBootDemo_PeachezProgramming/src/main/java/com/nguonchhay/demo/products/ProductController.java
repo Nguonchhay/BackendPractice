@@ -9,6 +9,7 @@ import com.nguonchhay.demo.products.QueryHandlers.GetAllProductsQueryHandler;
 import com.nguonchhay.demo.products.QueryHandlers.GetProductQueryHandler;
 import com.nguonchhay.demo.products.QueryHandlers.GetProductsByPriceQueryHandler;
 import com.nguonchhay.demo.products.QueryHandlers.GetProductsBySearchQueryHandler;
+import com.nguonchhay.demo.products.Requests.ProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,8 +68,8 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity createProduct(@RequestBody Product product) {
-       return createProductCommandHandler.execute(product);
+    public ResponseEntity createProduct(@RequestBody ProductRequest productRequest) {
+       return createProductCommandHandler.execute(productRequest);
     }
 
     @PutMapping("/{id}")

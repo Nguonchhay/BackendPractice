@@ -2,40 +2,53 @@ package com.nguonchhay.demo.products.CommandHandlers;
 
 import com.nguonchhay.demo.Command;
 import com.nguonchhay.demo.Exceptions.ProductNotValidateException;
+import com.nguonchhay.demo.products.CategoryRepository;
+import com.nguonchhay.demo.products.Models.Category;
 import com.nguonchhay.demo.products.Models.Product;
 import com.nguonchhay.demo.products.ProductRepository;
+import com.nguonchhay.demo.products.Requests.ProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateProductCommandHandler implements Command<Product, ResponseEntity> {
+public class CreateProductCommandHandler implements Command<ProductRequest, ResponseEntity> {
 
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
-    public ResponseEntity execute(Product product) {
-        validateProduct(product);
+    public ResponseEntity execute(ProductRequest productRequest) {
+        Product product = validateProduct(productRequest);
         productRepository.save(product);
         return ResponseEntity.ok().build();
     }
 
-    private void validateProduct(Product product) {
-        if (product.getCategoryId() <= 0) {
-            throw new ProductNotValidateException("Category id is required");
-        }
+    private Product validateProduct(ProductRequest productRequest) {
+        Category category = categoryRepository.findById(productRequest.getCategoryId())
+                .orElseThrow(() -> new ProductNotValidateException("Category id is required"));
 
-        if (product.getName().isEmpty()) {
+        if (productRequest.getName().isEmpty()) {
             throw new ProductNotValidateException("Product name is required");
         }
 
-        if (product.getPrice() <= 0.0) {
+        if (productRequest.getPrice() <= 0.0) {
             throw new ProductNotValidateException("Price is required");
         }
 
-        if (product.getQuantity() <= 0) {
+        if (productRequest.getQuantity() <= 0) {
             throw new ProductNotValidateException("Quantity is required");
         }
+
+        Product product = new Product();
+        product.setName(productRequest.getName());
+        product.setQuantity(productRequest.getQuantity());
+        product.setDescription(productRequest.getDescription());
+        product.setCategory(category);
+
+        return product;
     }
 }

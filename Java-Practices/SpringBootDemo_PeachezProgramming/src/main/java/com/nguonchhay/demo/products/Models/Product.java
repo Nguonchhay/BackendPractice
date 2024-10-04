@@ -1,5 +1,7 @@
 package com.nguonchhay.demo.products.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,8 +18,11 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "category_id")
-    private int categoryId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    @JsonIgnore
+    @JsonBackReference
+    private Category category;
 
     @Column(name = "description")
     private String description;
