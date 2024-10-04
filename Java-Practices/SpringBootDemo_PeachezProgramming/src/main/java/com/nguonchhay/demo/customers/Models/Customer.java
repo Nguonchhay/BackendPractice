@@ -1,7 +1,10 @@
 package com.nguonchhay.demo.customers.Models;
 
+import com.nguonchhay.demo.products.Models.Product;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -22,4 +25,12 @@ public class Customer {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
+
+    @ManyToMany
+    @JoinTable(
+            name = "purchases",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
 }

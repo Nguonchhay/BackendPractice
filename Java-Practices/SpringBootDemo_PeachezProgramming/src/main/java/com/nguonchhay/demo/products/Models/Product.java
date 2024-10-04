@@ -2,8 +2,11 @@ package com.nguonchhay.demo.products.Models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nguonchhay.demo.customers.Models.Customer;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -32,4 +35,8 @@ public class Product {
 
     @Column(name = "quantity")
     private int quantity;
+
+    @ManyToMany(mappedBy = "products")
+    @JsonIgnore
+    private List<Customer> customers;
 }
