@@ -7,6 +7,7 @@ import com.nguonchhay.demo.products.ProductDTO;
 import com.nguonchhay.demo.products.ProductRepository;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class GetProductQueryHandler implements Query<Integer, ProductDTO> {
 
 
     @Override
+    @Cacheable("productCache")
     public ResponseEntity<ProductDTO> execute(Integer id) {
         Optional<Product> product = productRepository.findById(id);
         if (product.isEmpty()) {
