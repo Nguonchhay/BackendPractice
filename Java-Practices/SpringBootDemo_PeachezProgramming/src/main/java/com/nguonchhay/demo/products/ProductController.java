@@ -73,8 +73,8 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateProduct(@PathVariable Integer id, @RequestBody Product product) {
-        UpdateProductCommand command = new UpdateProductCommand(id, product);
+    public ResponseEntity updateProduct(@PathVariable Integer id, @RequestBody ProductRequest productRequest) {
+        UpdateProductCommand command = new UpdateProductCommand(id, productRequest);
         return updateProductCommandHandler.execute(command);
     }
 

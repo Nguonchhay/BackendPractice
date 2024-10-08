@@ -1,20 +1,17 @@
 package com.nguonchhay.demo.products.Models;
 
+import com.nguonchhay.demo.products.Requests.ProductRequest;
+import lombok.Getter;
+
 public class UpdateProductCommand {
+    @Getter
     private int id;
-    private Product product;
 
-    public UpdateProductCommand(int id, Product product) {
+    @Getter
+    private ProductRequest productRequest;
+
+    public UpdateProductCommand(int id, ProductRequest productRequest) {
         this.id = id;
-        this.product = product;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public Product getUpdatedProduct() {
-        product.setId(id);
-        return product;
+        this.productRequest = productRequest;
     }
 }

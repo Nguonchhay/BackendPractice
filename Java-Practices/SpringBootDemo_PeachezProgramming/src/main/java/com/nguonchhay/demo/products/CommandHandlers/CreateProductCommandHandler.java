@@ -24,7 +24,7 @@ public class CreateProductCommandHandler implements Command<ProductRequest, Resp
     public ResponseEntity execute(ProductRequest productRequest) {
         Product product = validateProduct(productRequest);
         productRepository.save(product);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(product);
     }
 
     private Product validateProduct(ProductRequest productRequest) {
@@ -44,10 +44,11 @@ public class CreateProductCommandHandler implements Command<ProductRequest, Resp
         }
 
         Product product = new Product();
+        product.setCategory(category);
         product.setName(productRequest.getName());
         product.setQuantity(productRequest.getQuantity());
+        product.setPrice(productRequest.getPrice());
         product.setDescription(productRequest.getDescription());
-        product.setCategory(category);
 
         return product;
     }
